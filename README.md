@@ -24,34 +24,3 @@ This repository contains a collection of useful templates, generalized and store
    ```bash
    ansible-playbook playbooks/configure_web_server.yml -i ../inventory
 
-## Folder Structure
-
-ansible-terraform-templates/
-├── terraform/
-│   ├── vpc.tf
-│   ├── rds.tf
-│   ├── k8s_cluster.tf
-│   ├── auto_scaling.tf
-│   ├── load_balancer.tf
-│   ├── iam_role.tf
-│   ├── monitoring.tf
-│   ├── s3_bucket.tf
-│   ├── vpn.tf
-│   └── istio.tf
-├── ansible/
-│   ├── playbooks/
-│   │   ├── configure_web_server.yml
-│   │   ├── deploy_k8s_app.yml
-│   │   ├── setup_database.yml
-│   │   ├── configure_nginx_lb.yml
-│   │   ├── deploy_to_asg.yml
-│   │   ├── configure_instance_role.yml
-│   │   ├── setup_monitoring.yml
-│   │   ├── deploy_static_site.yml
-│   │   ├── configure_vpn.yml
-│   │   └── configure_service_mesh.yml
-│   ├── templates/
-│   │   ├── nginx_lb.conf.j2
-│   │   └── cloudwatch_config.json.j2
-├── README.md
-└── inventory
