@@ -1,0 +1,23 @@
+---
+- name: Setup Monitoring Agent
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Install CloudWatch agent
+      apt:
+        name: amazon-cloudwatch-agent
+        state: present
+
+    - name: Configure CloudWatch agent
+      template:
+        src: cloudwatch_config.json.j2
+        dest: /opt/cloudwatch_config.json
+      notify: restart cloudwatch agent
+
+  handlers:
+    - name: restart cloudwatch agent
+      service:
+        name: amazon-cloudwatch-agent
+        state: restarted
+

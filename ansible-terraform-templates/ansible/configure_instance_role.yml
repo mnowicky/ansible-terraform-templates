@@ -1,0 +1,10 @@
+---
+- name: Configure EC2 Instance Role
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Attach IAM role to instance
+      command: >
+        aws ec2 associate-iam-instance-profile --instance-id {{ ansible_ec2.instance_id }} --iam-instance-profile Name=app-role
+

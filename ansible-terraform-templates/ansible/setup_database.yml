@@ -1,0 +1,25 @@
+---
+- name: Setup Database
+  hosts: db_servers
+  become: yes
+  vars:
+    db_password: "SuperSecretPassword"
+
+  tasks:
+    - name: Install MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Create database
+      mysql_db:
+        name: myapp
+        state: present
+
+    - name: Create user
+      mysql_user:
+        name: admin
+        password: "{{ db_password }}"
+        priv: "*.*:ALL"
+        state: present
+

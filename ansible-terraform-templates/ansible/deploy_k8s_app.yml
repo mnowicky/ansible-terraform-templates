@@ -1,0 +1,12 @@
+---
+- name: Deploy Application to Kubernetes
+  hosts: localhost
+  tasks:
+    - name: Set kubeconfig
+      command: aws eks --region us-west-2 update-kubeconfig --name example
+
+    - name: Deploy App
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'app_deployment.yml') }}"
+

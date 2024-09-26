@@ -1,0 +1,19 @@
+---
+- name: Deploy Application to Auto Scaling Group
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Install application dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - curl
+
+    - name: Deploy application code
+      copy:
+        src: ./myapp/
+        dest: /opt/myapp/
+

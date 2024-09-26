@@ -1,0 +1,23 @@
+---
+- name: Configure VPN
+  hosts: vpn_servers
+  become: yes
+
+  tasks:
+    - name: Install StrongSwan
+      apt:
+        name: strongswan
+        state: present
+
+    - name: Configure VPN connection
+      template:
+        src: ipsec.conf.j2
+        dest: /etc/ipsec.conf
+      notify: restart strongswan
+
+  handlers:
+    - name: restart strongswan
+      service:
+        name: strongswan
+        state: restarted
+

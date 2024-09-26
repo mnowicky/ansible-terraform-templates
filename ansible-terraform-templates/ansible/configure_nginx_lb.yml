@@ -1,0 +1,23 @@
+---
+- name: Configure Nginx with Load Balancer
+  hosts: web_servers
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Configure Nginx for Load Balancer
+      template:
+        src: nginx_lb.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+

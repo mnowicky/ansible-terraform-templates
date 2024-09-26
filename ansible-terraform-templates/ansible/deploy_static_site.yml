@@ -1,0 +1,10 @@
+---
+- name: Deploy Static Site to S3
+  hosts: localhost
+  tasks:
+    - name: Sync static files to S3
+      s3_sync:
+        bucket: my-static-site
+        src: ./static/
+        mode: push
+

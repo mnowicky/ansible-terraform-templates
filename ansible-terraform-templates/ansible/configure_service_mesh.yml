@@ -1,0 +1,7 @@
+---
+- name: Configure Service Mesh
+  hosts: localhost
+  tasks:
+    - name: Enable Istio sidecar injection
+      command: kubectl label namespace default istio-injection=enabled
+
